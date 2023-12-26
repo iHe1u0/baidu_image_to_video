@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>百度AI成片</title>
+    <link href="https://ai.baidu.com/favicon.ico" rel="icon">
+    <!-- 使用Bootstrap的CSS样式 -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <script defer src="assets/js/main.js" type="module"></script>
+</head>
+
+<body class="d-flex align-items-center justify-content-center vh-100" data-bs-theme="dark">
+<div class="card p-4">
+    <h1 class="text-center mb-4">选择图片</h1>
+    <form id="input_form">
+        <div class="mb-3">
+            <label class="form-label" for="image">选择图片</label>
+            <input accept="image/*" class="form-control" id="image" name="image" onchange="previewImage(this)" required
+                   type="file">
+        </div>
+        <div class="mb-3">
+            <img alt="your image" id="preview" src="#"
+                 style="display: none; max-height: 50vh; width: auto; height: auto;"/>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="greet-input">输入文字</label>
+            <input class="form-control" id="greet-input" minlength="21" name="text" required type="text">
+        </div>
+        <div class="mb-3" id="result-text" style="display: none;">
+            <label class="form-label" id="result">隐藏的文本框</label>
+        </div>
+        <button class="btn btn-primary w-100" onclick="showResultText()" type="submit">生成
+        </button>
+    </form>
+</div>
+<!-- 使用Bootstrap的JavaScript和Popper.js -->
+<script src="assets/js/bootstrap.js"></script>
+<script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('preview').style.display = 'block';
+                document.getElementById('preview').src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function showResultText() {
+        document.getElementById('result-text').style.display = 'block';
+    }
+</script>
+</body>
+
+</html>
